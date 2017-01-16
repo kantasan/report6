@@ -13,11 +13,24 @@ public class Hero extends LivingThing{
      * @param attack ヒーローの攻撃力
      */
     public Hero (String name, int maximumHP, int attack) {
-        super();
-        this.setName(name);
-        setHitPoint(maximumHP);
-        this.setAttack(attack);
-        setDead(false);
-        System.out.printf("%sのHPは%d。攻撃力は%dです。\n", name, maximumHP, attack);
+        super(name, maximumHP, attack);
+
+    }
+    @Override
+    public void attack(LivingThing opponent) {
+        if (getDead() == false) {
+            int damage = (int) (Math.random() * getAttack());
+            int ran = (int)(Math.random()*10);
+            if(ran <= 2) {
+                damage = damage * 2;
+                System.out.printf("%sの攻撃！会心の一撃！！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
+            }
+            else if (damage == 0){
+                System.out.printf("%sの攻撃！,,,だが、%sは攻撃を回避した！\n", getName(), opponent.getName());
+            }else {
+                System.out.printf("%sの攻撃！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
+            }
+            opponent.wounded(damage);
+        }
     }
 }
