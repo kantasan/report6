@@ -21,12 +21,12 @@ public class Enemy extends LivingThing{
         if (getDead() == false) {
             int damage = (int) (Math.random() * getAttack());
             int ran = (int)(Math.random()*10);
-            if(ran <= 1) {
-                damage = damage * 2;
-                System.out.printf("%sの攻撃！痛恨の一撃！！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
-            }
-            else if (damage == 0){
+            if(damage == 0) {
                 System.out.printf("%sの攻撃！,,,だが、%sは攻撃を回避した！\n", getName(), opponent.getName());
+            }
+            else if (ran <= 2){
+                damage = damage * 2;
+                System.out.printf("%sの攻撃！痛恨の一撃！！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(),damage);
             }else {
                 System.out.printf("%sの攻撃！%sに%dのダメージを与えた！！\n", getName(), opponent.getName(), damage);
             }
